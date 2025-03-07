@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>kathryn's computer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+   /* Style for the movable objects */
+.movable {
+  width: 100px;
+  height: 100px;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  text-align: center;
+  position: absolute;
+  cursor: pointer;
+  user-select: none;
+  pointer-events: auto;
+  display: inline-block;
+  z-index: 100; /* Set z-index lower than the menu */
+}
+
+/* Style for the dotted border when dragging */
+.dragging {
+  border-style: dotted;
+  border-width: 2.5px;
+}
+
+/* Style for the image inside the movable object */
+.movable img {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+}
+
+/* Blue tint for specific folders */
+.blue-tint img {
+  filter: hue-rotate(180deg) brightness(0.8);
+}
+
+/* Style for the text container to keep background transparent */
+.text-container {
+  background-color: transparent; /* Ensure the background is transparent */
+  padding: 5px;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+/* Ensure the text inside the movable objects has the correct size */
+.text-container p {
+  margin: 0;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 15px;
+  background-color: transparent; /* Ensure text background is transparent */
+  color: #000; /* Set text color */
+}
+
+/* Text styling */
+body {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style for the toolbar iframe */
+iframe {
+  border: none;
+  width: 100%;
+  height: 100px; /* Initial height to accommodate the menu */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10000; /* Ensure iframe is on top */
+  pointer-events: none; /* Disable pointer events by default */
+}
+
+/* Style for the menu */
+#menu {
+  z-index: 10001; /* Ensure menu is above the iframe */
+}
+
+  </style>
+</head>
+
+<body onload="setBackground()">
+  <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+    <img src="kathrynzix.png" width="100%">
+  </div>
+  <script>
+    var backgroundColors = ["#3A3E5C" , "#29716B" , "#065F73"];
+    function setBackground() {
+      var i = Math.floor(Math.random() * backgroundColors.length);
+      document.body.style.backgroundColor = backgroundColors[i];
+    }
+
+    // Function to adjust the iframe height based on the menu height
+    function adjustIframeHeight(height) {
+      const iframe = document.querySelector('iframe');
+      iframe.style.height = height + 'px';
+    }
+
+    // Listen for messages from the iframe
+    window.addEventListener('message', (event) => {
+      if (event.data.type === 'menu') {
+        const iframe = document.querySelector('iframe');
+        iframe.style.height = event.data.height + 'px'; // Adjust height to include menu
+        iframe.style.pointerEvents = 'none'; // Disable pointer events for iframe
+      }
+    });
+
+    // Function to enable iframe pointer events
+    function enableIframePointerEvents() {
+      const iframe = document.querySelector('iframe');
+      iframe.style.pointerEvents = 'auto'; // Enable pointer events
+    }
+
+    // Function to disable iframe pointer events
+    function disableIframePointerEvents() {
+      const iframe = document.querySelector('iframe');
+      iframe.style.pointerEvents = 'none'; // Disable pointer events
+    }
+
+    // Initial iframe height adjustment
+    window.addEventListener('load', () => {
+      const iframe = document.querySelector('iframe');
+      iframe.style.height = '100px'; // Default height for the toolbar
+    });
+
+    // Listen for clicks to enable draggable objects interaction
+    document.addEventListener('click', () => {
+      enableIframePointerEvents();
+    });
+  </script>
+
+  <iframe src="toolbar.html" frameborder="0"></iframe>
+
+  <div>
+    <!-- Create multiple movable objects with set initial positions -->
+    <div class="movable" id="object1" style="left: 50px; top: 50px;">
+      <img src="clock.png" draggable="false">
+      <div class="text-container">
+        <p>library of alternative timekeeping</p>
+      </div>
+    </div>
+
+    <div class="movable" id="object2" style="left: 50px; top: 220px;">
+      <img src="newspaper.png" draggable="false">
+      <div class="text-container">
+        <p>estate sale</p>
+      </div>
+    </div>
+
+    <div class="movable" id="object3" style="left: calc(100% - 160px); top: calc(100% - 220px);">
+      <img src="folder.png" draggable="false">
+      <div class="text-container">
+        <p>photo</p>
+      </div>
+    </div>
+
+    <div class="movable" id="object4" style="left: calc(100% - 310px); top: calc(100% - 220px);">
+      <img src="folder.png" draggable="false">
+      <div class="text-container">
+        <p>video</p>
+      </div>
+    </div>
+
+    <div class="movable" id="object5" style="left: calc(100% - 460px); top: calc(100% - 220px);">
+      <img src="folder.png" draggable="false">
+      <div class="text-container">
+        <p>web art</p>
+      </div>
+    </div>
+
+    <div class="movable" id="object6" style="left: calc(100% - 160px); top: calc(100% - 370px);">
+      <img src="folder.png" draggable="false">
+      <div class="text-container">
+        <p>book arts</p>
+      </div>
+    </div>
+
+    <div class="movable" id="object7" style="left: calc(100% - 310px); top: calc(100% - 370px);">
+      <img src="resume.png" draggable="false">
+      <div class="text-container">
+        <p>resume</p>
+      </div>
+    </div>
+
+    <!-- Add the new "posters" object -->
+    <div class="movable" id="object8" style="left: calc(100% - 610px); top: calc(100% - 220px);">
+      <img src="folder.png" draggable="false">
+      <div class="text-container">
+        <p>posters</p>
+      </div>
+    </div>
+
+    <script>
+      // Get all the movable objects
+      const movables = document.querySelectorAll('.movable');
+
+      // Add event listeners to each object
+      movables.forEach(movable => {
+        let isDragging = false;
+        let offsetX = 0;
+        let offsetY = 0;
+        let dragged = false;
+        let isClicking = false;
+
+        movable.addEventListener('pointerdown', (e) => {
+          // Move the object to the front
+          movable.style.zIndex = getHighestZIndex() + 1;
+
+          isDragging = true;
+          dragged = false;
+          isClicking = true;
+          offsetX = e.offsetX;
+          offsetY = e.offsetY;
+          movable.classList.add('dragging');
+        });
+
+        // Behavior for moving objects
+        document.addEventListener('pointermove', (e) => {
+          if (isDragging) {
+            dragged = true;
+            movable.style.left = (e.pageX - offsetX) + 'px';
+            movable.style.top = (e.pageY - offsetY) + 'px';
+          }
+        });
+
+        movable.addEventListener('pointerup', (e) => {
+          if (dragged && isClicking) {
+            e.preventDefault();
+          }
+          if (!isDragging) {
+            movable.classList.remove('dragging');
+            movable.blur();
+          }
+          isDragging = false;
+          isClicking = false;
+          movable.classList.remove('dragging');
+          movable.blur();
+        });
+
+        movable.addEventListener('click', (e) => {
+          if (dragged || isDragging) {
+            e.preventDefault();
+            return;
+          }
+          switch (movable.id) {
+            case 'object1':
+              window.location.href = 'library%20of%20alternative%20timekeeping/library_of_alternative_timekeeping.html';
+              break;
+            case 'object2':
+              window.location.href = 'estate sale/estate_sale.html';
+              break;
+            case 'object3':
+              window.location.href = 'photo.html';
+              break;
+            case 'object4':
+              window.location.href = 'video.html';
+              break;
+            case 'object5':
+              window.location.href = 'web_art.html';
+              break;
+            case 'object6':
+              window.location.href = 'book_arts.html';
+              break;
+            case 'object7':
+              window.location.href = 'zix_resume.pdf';
+              break;
+            case 'object8':
+              window.location.href = 'posters.html';
+              break;
+          }
+        });
+      });
+
+      // Function to get the highest z-index value among all the movable objects
+      function getHighestZIndex() {
+        let highestZIndex = 0;
+        const elements = document.querySelectorAll('*');
+        elements.forEach(el => {
+          const zIndex = window.getComputedStyle(el).zIndex;
+          if (!isNaN(zIndex) && zIndex > highestZIndex) {
+            highestZIndex = zIndex;
+          }
+        });
+        return highestZIndex;
+      }
+    </script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>trash</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+
+    /* Style for the movable objects */
+    .movable {
+      width: 90px;
+      height: 90px;
+      border: none;
+      padding: 0px;
+      background-color: none;
+      text-align: center;
+      position: absolute;
+      cursor: pointer;
+      user-select: none;
+      pointer-events: auto;
+      display: inline-block
+    }
+
+    /* Style for the dotted border when dragging */
+    .dragging {
+      border-style: dotted;
+      border-width: 2.5px;
+    }
+
+      /* Style for the image inside the movable object */
+      .movable img {
+      display: block;
+      margin: 0 auto 5px;
+      max-width: 70px;
+      max-height: 70px;
+    }
+    
+
+    /* Style for the text inside the movable object */
+    .movable p {
+  margin: 0;
+  padding: 0 5px;
+  font-family: 'Roboto Mono', monospace;
+  background-color: white;
+  display: inline-block;
+}
+    /* text styling */
+    body {font-family: 'Roboto Mono', monospace;
+        font-size: 12px;
+        overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <!-- Create multiple movable objects -->
+  <div class="movable" id="object1">
+    <img src="1.webp" width= 60px draggable="false" >
+    <p>lid and straw</p>
+  </div>
+
+  <div class="movable" id="object2">
+    <img src="2.webp" draggable="false">
+    <p>emergency poncho</p>
+  </div>
+
+  <div class="movable" id="object3">
+    <img src="3.webp" draggable="false">
+    <p>?</p>
+  </div>
+
+  <div class="movable" id="object4">
+    <img src="4.webp" draggable="false">
+    <p>string</p>
+  </div>
+
+  <div class="movable" id="object5">
+    <img src="5.webp" draggable="false">
+    <p>marlboro cigarette butt</p>
+  </div>
+
+  <div class="movable" id="object6">
+    <img src="6.webp" draggable="false">
+    <p>swedish fish mini package</p>
+  </div> 
+
+  <div class="movable" id="object7">
+    <img src="7.webp" draggable="false">
+    <p>cigarette butt</p>
+  </div> 
+
+  <div class="movable" id="object8">
+    <img src="8.webp" draggable="false">
+    <p>new york strip flavor cesar adult dog food</p>
+  </div> 
+
+  <div class="movable" id="object9">
+    <img src="9.webp" draggable="false">
+    <p>rubber band</p>
+  </div> 
+
+  <div class="movable" id="object10">
+    <img src="10.webp" draggable="false">
+    <p>washer</p>
+  </div> 
+
+  <div class="movable" id="object11">
+    <img src="11.webp" draggable="false">
+    <p>cough drop</p>
+  </div> 
+
+  <div class="movable" id="object12">
+    <img src="12.webp" draggable="false">
+    <p>mask</p>
+  </div> 
+
+  <div class="movable" id="object13">
+    <img src="13.webp" draggable="false">
+    <p>cigarette butt</p>
+  </div> 
+
+  <div class="movable" id="object14">
+    <img src="14.webp" draggable="false">
+    <p>cigarette butt</p>
+  </div> 
+
+  <div class="movable" id="object15">
+    <img src="15.webp" draggable="false">
+    <p>dutch bros cup</p>
+  </div> 
+
+  <div class="movable" id="object16">
+    <img src="16.webp" draggable="false">
+    <p>shot of fireball</p>
+  </div> 
+
+  <div class="movable" id="object17">
+    <img src="17.webp" draggable="false">
+    <p>buzzballz lotta colada</p>
+  </div> 
+
+  <div class="movable" id="object18">
+    <img src="18.webp" draggable="false">
+    <p>cigarette butt</p>
+  </div> 
+
+  <div class="movable" id="object19">
+    <img src="19.webp" draggable="false">
+    <p>vans shoe</p>
+  </div> 
+
+  <div class="movable" id="object20">
+    <img src="20.webp" draggable="false">
+    <p>starbucks cup</p>
+  </div> 
+
+  <div class="movable" id="object21">
+    <img src="21.webp" draggable="false">
+    <p>weed canister</p>
+  </div> 
+
+  <div class="movable" id="object22">
+    <img src="22.webp" draggable="false">
+    <p>adidas sock</p>
+  </div> 
+
+  <div class="movable" id="object23">
+    <img src="23.webp" draggable="false">
+    <p>jacksons really big drink</p>
+  </div> 
+
+  <div class="movable" id="object24">
+    <img src="24.webp" draggable="false">
+    <p>jumanji part</p>
+  </div> 
+
+  <div class="movable" id="object25">
+    <img src="25.webp" draggable="false">
+    <p>marlboro pack</p>
+  </div> 
+
+  <div class="movable" id="object26">
+    <img src="26.webp" draggable="false">
+    <p>?</p>
+  </div> 
+
+  <div class="movable" id="object27">
+    <img src="27.webp" draggable="false">
+    <p>?</p>
+  </div> 
+
+  <div class="movable" id="object28">
+    <img src="28.webp" draggable="false">
+    <p>miscellaneous food packaging</p>
+  </div> 
+
+  <div class="movable" id="object29">
+    <img src="29.webp" draggable="false">
+    <p>ninkasi brewing bottle cap</p>
+  </div> 
+
+  <div class="movable" id="object30">
+    <img src="30.webp" draggable="false">
+    <p>reese's snack cake</p>
+  </div> 
+
+  <div class="movable" id="object31">
+    <img src="31.webp" draggable="false">
+    <p>columbia sportswear promotional ad</p>
+  </div> 
+
+  <div class="movable" id="object32">
+    <img src="32.webp" draggable="false">
+    <p>sauce packet</p>
+  </div> 
+
+  <div class="movable" id="object33">
+    <img src="33.webp" draggable="false">
+    <p>big mac package</p>
+  </div> 
+
+  <div class="movable" id="object34">
+    <img src="34.webp" draggable="false">
+    <p>cardboard</p>
+  </div> 
+
+  <div class="movable" id="object35">
+    <img src="35.webp" draggable="false">
+    <p>weed canister lid</p>
+  </div> 
+
+  <div class="movable" id="object36">
+    <img src="36.webp" draggable="false">
+    <p>ad</p>
+  </div> 
+
+  <div class="movable" id="object37">
+    <img src="37.webp" draggable="false">
+    <p>?</p>
+  </div> 
+
+  <div class="movable" id="object38">
+    <img src="38.webp" draggable="false">
+    <p>cigarette butt</p>
+  </div> 
+
+  <div class="movable" id="object39">
+    <img src="39.webp" draggable="false">
+    <p>ice cream lid</p>
+  </div> 
+
+  <div class="movable" id="object40">
+    <img src="40.webp" draggable="false">
+    <p>ads</p>
+  </div> 
+
+  <div class="movable" id="object41">
+    <img src="41.webp" draggable="false">
+    <p>toothbrush</p>
+  </div> 
+
+  <div class="movable" id="object42">
+    <img src="42.webp" draggable="false">
+    <p>mirror shard</p>
+  </div> 
+
+  <div class="movable" id="object43">
+    <img src="43.webp" draggable="false">
+    <p>marlboro cigarette butt</p>
+  </div> 
+
+  <div class="movable" id="object44">
+    <img src="44.webp" draggable="false">
+    <p>sticker</p>
+  </div> 
+
+  <div class="movable" id="object45">
+    <img src="45.webp" draggable="false">
+    <p>chipotle cup</p>
+  </div> 
+
+  <div class="movable" id="object46">
+    <img src="46.webp" draggable="false">
+    <p>floss pick</p>
+  </div> 
+
+  <div class="movable" id="object47">
+    <img src="47.webp" draggable="false">
+    <p>hairbo peaches</p>
+  </div> 
+
+  <div class="movable" id="object48">
+    <img src="48.webp" draggable="false">
+    <p>frozen dairy dessert</p>?</p>
+  </div> 
+
+  <div class="movable" id="object49">
+    <img src="49.webp" draggable="false">
+    <p>straw</p>
+  </div> 
+
+  <div class="movable" id="object50">
+    <img src="50.webp" draggable="false">
+    <p>at&t sim card</p>
+  </div> 
+
+  <div class="movable" id="object51">
+    <img src="51.webp" draggable="false">
+    <p>mccafe cup, bacardi cup, & ricola cough drop</p>
+  </div> 
+
+  <div class="movable" id="object52">
+    <img src="52.webp" draggable="false">
+    <p>?</p>
+  </div> 
+
+  <div class="movable" id="object53">
+    <img src="53.webp" draggable="false">
+    <p>bottle cap</p>
+  </div> 
+    
+  <div class="movable" id="object54">
+    <img src="54.webp" draggable="false">
+    <p>mask & cigarette</p>
+  </div> 
+
+  <div class="movable" id="object55">
+    <img src="55.webp" draggable="false">
+    <p>pumpkin pie can</p>
+  </div> 
+
+  <div class="movable" id="object56">
+    <img src="56.webp" draggable="false">
+    <p>paper cups</p>
+  </div> 
+
+  <div class="movable" id="object57">
+    <img src="57.webp" draggable="false">
+    <p>snack pack pudding lid</p>
+  </div> 
+
+  <div class="movable" id="object58">
+    <img src="58.webp" draggable="false">
+    <p>marlboro cigarette butt</p>
+  </div> 
+
+  <div class="movable" id="object59">
+    <img src="59.webp" draggable="false">
+    <p>mcdonald's fry package</p>
+  </div> 
+
+  <div class="movable" id="object60">
+    <img src="60.webp" draggable="false">
+    <p>cigarette butt & peanut</p>
+  </div> 
+
+  <div class="movable" id="object61">
+    <img src="61.webp" draggable="false">
+    <p>marlboro cigarette pack</p>
+  </div> 
+
+  <div class="movable" id="object62">
+    <img src="62.webp" draggable="false">
+    <p>cup lid</p>
+  </div> 
+
+  <div class="movable" id="object63">
+    <img src="63.webp" draggable="false">
+    <p>adidas shoe</p>
+  </div> 
+
+  <div class="movable" id="object64">
+    <img src="64.webp" draggable="false">
+    <p>adidas shoe</p>
+  </div> 
+
+  <div class="movable" id="object65">
+    <img src="65.webp" draggable="false">
+    <p>krispy krunchy chicken package</p>?</p>
+  </div> 
+
+  <div class="movable" id="object66">
+    <img src="66.webp" draggable="false">
+    <p>square paper</p>
+  </div> 
+
+  <div class="movable" id="object67">
+    <img src="67.webp" draggable="false">
+    <p>cigarette butt</p>
+  </div> 
+
+  <div class="movable" id="object68">
+    <img src="68.webp" draggable="false">
+    <p>frozen food packaging</p>
+  </div> 
+
+  <div class="movable" id="object69">
+    <img src="69.webp" draggable="false">
+    <p>straw</p>
+  </div> 
+
+  <div class="movable" id="object70">
+    <img src="70.webp" draggable="false">
+    <p>extra gum wrapper</p>
+  </div> 
+
+  <div class="movable" id="object71">
+    <img src="71.webp" draggable="false">
+    <p>q-tip</p>
+  </div> 
+
+  <div class="movable" id="object72">
+    <img src="72.webp" draggable="false">
+    <p>mcdonalds cup, lid, & straw</p>
+  </div> 
+
+  <div class="movable" id="object73">
+    <img src="73.webp" draggable="false">
+    <p>mail from flag service consultants</p>
+  </div> 
+
+  <div class="movable" id="object74">
+    <img src="74.webp" draggable="false">
+    <p>cup lid</p>
+  </div> 
+
+  <div class="movable" id="object75">
+    <img src="75.webp" draggable="false">
+    <p>mask</p>
+  </div> 
+
+  <div class="movable" id="object76">
+    <img src="76.webp" draggable="false">
+    <p>white claw can</p>
+  </div> 
+
+  <div class="movable" id="object77">
+    <img src="77.webp" draggable="false">
+    <p>?</p>
+  </div> 
+
+  <div class="movable" id="object78">
+    <img src="78.webp" draggable="false">
+    <p>hi-chew wrapper</p>
+  </div> 
+
+  <div class="movable" id="object79">
+    <img src="79.webp" draggable="false">
+    <p>white claw can</p>
+  </div> 
+
+  <div class="movable" id="object80">
+    <img src="80.webp" draggable="false">
+    <p>business card</p>
+  </div> 
+
+  <div class="movable" id="object81">
+    <img src="81.webp" draggable="false">
+    <p>pinwheel tag</p>
+  </div> 
+
+  <div class="movable" id="object82">
+    <img src="82.webp" draggable="false">
+    <p>reese's big cup</p>
+  </div> 
+
+  <div class="movable" id="object83">
+    <img src="83.webp" draggable="false">
+    <p>mcdonald's bag</p>
+  </div> 
+
+  <div class="movable" id="object84">
+    <img src="84.webp" draggable="false">
+    <p>big gulp cup fragment</p>
+  </div> 
+
+  <div class="movable" id="object85">
+    <img src="85.webp" draggable="false">
+    <p>barilla protein penne</p>
+  </div> 
+
+  <div class="movable" id="object86">
+    <img src="86.webp" draggable="false">
+    <p>sock</p>
+  </div> 
+
+  <div class="movable" id="object87">
+    <img src="87.webp" draggable="false">
+    <p>lucky strike pack</p>
+  </div> 
+
+  <div class="movable" id="object88">
+    <img src="88.webp" draggable="false">
+    <p>camel cigarette butts</p>
+  </div> 
+
+  <div class="movable" id="object89">
+    <img src="89.webp" draggable="false">
+    <p>mcdonald's apple pie package</p>
+  </div> 
+
+  <div class="movable" id="object90">
+    <img src="90.webp" draggable="false">
+    <p>card</p>
+  </div> 
+
+  <div class="movable" id="object91">
+    <img src="91.webp" draggable="false">
+    <p>pin</p>
+  </div> 
+
+  <div class="movable" id="object92">
+    <img src="92.webp" draggable="false">
+    <p>5-hour energy extra strength</p>
+  </div> 
+
+  <div class="movable" id="object93">
+    <img src="93.webp" draggable="false">
+    <p>heinz tomato ketchup packet</p>
+  </div> 
+
+  <div class="movable" id="object94">
+    <img src="94.webp" draggable="false">
+    <p>sandra lee cookbook</p>
+  </div> 
+
+  <div class="movable" id="object95">
+    <img src="95.webp" draggable="false">
+    <p>mask</p>
+  </div> 
+
+  <div class="movable" id="object96">
+    <img src="96.webp" draggable="false">
+    <p>pizza box</p>
+  </div> 
+
+  <div class="movable" id="object97">
+    <img src="97.webp" draggable="false">
+    <p>plaid pantry cup</p>
+  </div> 
+
+  <div class="movable" id="object98">
+    <img src="98.webp" draggable="false">
+    <p>?</p>
+  </div> 
+
+  <div class="movable" id="object99">
+    <img src="99.webp" draggable="false">
+    <p>container</p>
+  </div> 
+
+  <div class="movable" id="object100">
+    <img src="100.webp" draggable="false">
+    <p>american spirits pack</p>
+  </div> 
+
+  <div class="movable" id="object101">
+    <img src="101.webp" draggable="false">
+    <p>mild taco bell sauce</p>
+  </div> 
+
+  <div class="movable" id="object102">
+    <img src="102.webp" draggable="false">
+    <p>big bite 100% beef hot dog</p>
+  </div> 
+
+  <div class="movable" id="object103">
+    <img src="103.webp" draggable="false">
+    <p>ben & jerry's ice cream lid</p>
+  </div> 
+
+  <div class="movable" id="object104">
+    <img src="104.webp" draggable="false">
+    <p>glove</p>
+  </div> 
+
+  <div class="movable" id="object105">
+    <img src="105.webp" draggable="false">
+    <p>pokemon card fragment</p>
+  </div> 
+
+  <div class="movable" id="object106">
+    <img src="106.webp" draggable="false">
+    <p>boneyard beer box</p>
+  </div> 
+
+  <div class="movable" id="object107">
+    <img src="107.webp" draggable="false">
+    <p>dairy queen blizzard cup</p>
+  </div> 
+
+  <div class="movable" id="object108">
+    <img src="107.webp" draggable="false">
+    <p>starbucks cup</p>
+  </div> 
+
+  <div class="movable" id="object109">
+    <img src="109.webp" draggable="false">
+    <p>?</p>
+  </div> 
+
+  <div class="movable" id="object110">
+    <img src="110.webp" draggable="false">
+    <p>?</p>
+  </div> 
+
+  <div class="movable" id="object111">
+    <img src="111.webp" draggable="false">
+    <p>ghirardelli caramel milk chocolate wrapepr</p>
+  </div> 
+
+  <div class="movable" id="object112">
+    <img src="112.webp" draggable="false">
+    <p>?</p>
+  </div> 
+
+  <div class="movable" id="object113">
+    <img src="113.webp" draggable="false">
+    <p>cigarette butt, weed tube</p>
+  </div> 
+
+  <div class="movable" id="object114">
+    <img src="114.webp" draggable="false">
+    <p>jumanji cards</p>
+  </div> 
+
+  <div class="movable" id="object115">
+    <img src="115.webp" draggable="false">
+    <p>jumanji rules</p>
+  </div> 
+
+  <div class="movable" id="object116">
+    <img src="116.webp" draggable="false">
+    <p>silica gel packet</p>
+  </div> 
+
+  <div class="movable" id="object117">
+    <img src="117.webp" draggable="false">
+    <p>screw</p>
+  </div> 
+
+  <div class="movable" id="object118">
+    <img src="118.webp" draggable="false">
+    <p>salmon with slugs</p>
+  </div> 
+
+  <div class="movable" id="object119">
+    <img src="119.webp" draggable="false">
+    <p>ziploc bag</p>
+  </div> 
+
+  <div class="movable" id="object120">
+    <img src="120.webp" draggable="false">
+    <p>darigold chocolate milk</p>
+  </div> 
+
+  <div class="movable" id="object121">
+    <img src="121.webp" draggable="false">
+    <p>whippit canisters</p>
+  </div> 
+
+  <div class="movable" id="object122">
+    <img src="122.webp" draggable="false">
+    <p>mike's harder mango can</p>
+  </div> 
+
+  <div class="movable" id="object123">
+    <img src="123.webp" draggable="false">
+    <p>mcdonald's cup with lid and straw</p>
+  </div> 
+
+  <div class="movable" id="object124">
+    <img src="124.webp" draggable="false">
+    <p>marlboro menthol cigarette pack</p>
+  </div> 
+
+  <div class="movable" id="object125">
+    <img src="125.webp" draggable="false">
+    <p>russian cream cigar wrapper</p>
+  </div> 
+
+  <div class="movable" id="object126">
+    <img src="126.webp" draggable="false">
+    <p>nerds box</p>
+  </div> 
+
+  <div class="movable" id="object127">
+    <img src="127.webp" draggable="false">
+    <p>redwood sorrel tag</p>
+  </div> 
+
+  <div class="movable" id="object128">
+    <img src="128.webp" draggable="false">
+    <p>taco bell bags & eclipse gum pack</p>
+  </div> 
+
+  <div class="movable" id="object129">
+    <img src="129.webp" draggable="false">
+    <p>taco bell wrapper</p>
+  </div> 
+
+  <div class="movable" id="object130">
+    <img src="130.webp" draggable="false">
+    <p>camel cigarette pack</p>
+  </div> 
+
+  <div class="movable" id="object131">
+    <img src="131.webp" draggable="false">
+    <p>tampon inserter</p>
+  </div> 
+
+  <div class="movable" id="object132">
+    <img src="132.webp" draggable="false">
+    <p>value pack</p>
+  </div> 
+
+  <div class="movable" id="object133">
+    <img src="133.webp" draggable="false">
+    <p>wristband</p>
+  </div> 
+
+  <div class="movable" id="object134">
+    <img src="134.webp" draggable="false">
+    <p>plastic bag</p>
+  </div> 
+
+  <div class="movable" id="object135">
+    <img src="135.webp" draggable="false">
+    <p>welly bandage</p>
+  </div> 
+
+  <div class="movable" id="object136">
+    <img src="136.webp" draggable="false">
+    <p>cigarette butt</p>
+  </div> 
+
+  <div class="movable" id="object137">
+    <img src="137.webp" draggable="false">
+    <p>mask</p>
+  </div> 
+
+  <div class="movable" id="object138">
+    <img src="138.webp" draggable="false">
+    <p>latex glove</p>
+  </div> 
+
+  <div class="movable" id="object139">
+    <img src="139.webp" draggable="false">
+    <p>candle</p>
+  </div> 
+
+  <div class="movable" id="object140">
+    <img src="140.webp" draggable="false">
+    <p>fire! taco bell sauce packet</p>
+  </div> 
+
+  <div class="movable" id="object141">
+    <img src="141.webp" draggable="false">
+    <p>crayon</p>
+  </div> 
+
+  <div class="movable" id="object142">
+    <img src="142.webp" draggable="false">
+    <p>big gulp extra large</p>
+  </div> 
+
+  <div class="movable" id="object143">
+    <img src="143.webp" draggable="false">
+    <p>big gulp double extra large</p>
+  </div> 
+
+  <div class="movable" id="object144">
+    <img src="144.webp" draggable="false">
+    <p>big gulp double extra large with straw</p>
+  </div> 
+
+  <div class="movable" id="object145">
+    <img src="145.webp" draggable="false">
+    <p>broken rearview mirror</p>
+  </div> 
+</div>
+
+
+  <script>
+    // Get all the movable objects
+    const movables = document.querySelectorAll('.movable');
+
+     // Get the width and height of the window
+const windowWidth = window.innerWidth;
+const windowHeight = window.innerHeight;
+
+// Add event listeners to each object
+movables.forEach(movable => {
+  let isDragging = false;
+  let offsetX = 0;
+  let offsetY = 0;
+  let dragged = false;
+  let isClicking = false;
+
+  // Generate random coordinates for the object
+  const randomX = Math.floor(Math.random() * (windowWidth - 50));
+  const randomY = Math.floor(Math.random() * (windowHeight - 50));
+
+  // Set the object's initial position
+  movable.style.left = randomX + 'px';
+  movable.style.top = randomY + 'px';
+
+  movable.addEventListener('pointerdown', (e) => {
+    // Move the object to the front
+    movable.style.zIndex = getHighestZIndex() + 1;
+
+    isDragging = true;
+    dragged = false;
+    isClicking = true;
+    offsetX = e.offsetX;
+    offsetY = e.offsetY;
+    movable.classList.add('dragging');
+  });
+
+  // Behavior for moving objects
+  document.addEventListener('pointermove', (e) => {
+    if (isDragging) {
+      dragged = true;
+      movable.style.left = (e.pageX - offsetX) + 'px';
+      movable.style.top = (e.pageY - offsetY) + 'px';
+    }
+  });
+
+  movable.addEventListener('pointerup', (e) => {
+    if (dragged && isClicking) {
+      // If the object was dragged, prevent the click event from firing
+      e.preventDefault();
+    }
+    if (!isDragging) {
+      movable.classList.remove('dragging');
+      movable.blur(); // Deselect the object
+    }
+    isDragging = false;
+    isClicking = false;
+    movable.classList.remove('dragging');
+    movable.blur(); // Deselect the object
+  });
+
+  movable.addEventListener('click', (e) => {
+  if (dragged || isDragging) {
+    e.preventDefault();
+    return;
+  }
+  switch (movable.id) {
+    case 'object1':
+        window.location.href = '1.1.JPG';
+        break;
+    case 'object2':
+        window.location.href = '2.1.JPG';
+        break;
+    case 'object3':
+        window.location.href = '3.1.JPG';
+        break;
+    case 'object4':
+        window.location.href = '4.1.JPG';
+        break;
+    case 'object5':
+        window.location.href = '5.1.JPG';
+        break;
+    case 'object6':
+        window.location.href = '6.1.JPG';
+        break;
+    case 'object7':
+        window.location.href = '7.1.JPG';
+        break;
+    case 'object8':
+        window.location.href = '8.1.JPG';
+        break;
+    case 'object9':
+        window.location.href = '9.1.JPG';
+        break;
+    case 'object10':
+        window.location.href = '10.1.JPG';
+        break;
+    case 'object11':
+        window.location.href = '11.1.JPG';
+        break;
+    case 'object12':
+        window.location.href = '12.1.JPG';
+        break;
+    case 'object13':
+        window.location.href = '13.1.JPG';
+        break;
+    case 'object14':
+        window.location.href = '14.1.JPG';
+        break;
+    case 'object15':
+        window.location.href = '15.1.JPG';
+        break;
+    case 'object16':
+        window.location.href = '16.1.JPG';
+        break;
+    case 'object17':
+        window.location.href = '17.1.JPG';
+        break;
+    case 'object18':
+        window.location.href = '18.1.JPG';
+        break;
+    case 'object19':
+        window.location.href = '19.1.JPG';
+        break;
+    case 'object20':
+        window.location.href = '20.1.JPG';
+        break;
+    case 'object21':
+        window.location.href = '21.1.JPG';
+        break;
+    case 'object22':
+        window.location.href = '22.1.JPG';
+        break;
+    case 'object23':
+        window.location.href = '23.1.JPG';
+        break;
+    case 'object24':
+        window.location.href = '24.1.JPG';
+        break;
+    case 'object25':
+        window.location.href = '25.1.JPG';
+        break;
+    case 'object26':
+        window.location.href = '26.1.JPG';
+        break;
+    case 'object27':
+        window.location.href = '27.1.JPG';
+        break;
+    case 'object28':
+        window.location.href = '28.1.JPG';
+        break;
+    case 'object29':
+        window.location.href = '29.1.JPG';
+        break;
+    case 'object30':
+        window.location.href = '30.1.JPG';
+        break;
+    case 'object31':
+        window.location.href = '31.1.JPG';
+        break;
+    case 'object32':
+        window.location.href = '32.1.JPG';
+        break;
+    case 'object33':
+        window.location.href = '33.1.JPG';
+        break;
+    case 'object34':
+        window.location.href = '34.1.JPG';
+        break;
+    case 'object35':
+        window.location.href = '35.1.JPG';
+        break;
+    case 'object36':
+        window.location.href = '36.1.JPG';
+        break;
+        case 'object37':
+    window.location.href = '37.1.JPG';
+    break;
+case 'object38':
+    window.location.href = '38.1.JPG';
+    break;
+case 'object39':
+    window.location.href = '39.1.JPG';
+    break;
+case 'object40':
+    window.location.href = '40.JPG';
+    break;
+case 'object41':
+    window.location.href = '41.JPG';
+    break;
+case 'object42':
+    window.location.href = '42.JPG';
+    break;
+case 'object43':
+    window.location.href = '43.JPG';
+    break;
+case 'object44':
+    window.location.href = '44.JPG';
+    break;
+case 'object45':
+    window.location.href = '45.JPG';
+    break;
+case 'object46':
+    window.location.href = '46.JPG';
+    break;
+case 'object47':
+    window.location.href = '47.JPG';
+    break;
+case 'object48':
+    window.location.href = '48.JPG';
+    break;
+case 'object49':
+    window.location.href = '49.JPG';
+    break;
+case 'object50':
+    window.location.href = '50.JPG';
+    break;
+case 'object51':
+    window.location.href = '51.1 (1).JPG';
+    break;
+case 'object52':
+    window.location.href = '52.1.JPG';
+    break;
+case 'object53':
+    window.location.href = '53.1.JPG';
+    break;
+case 'object54':
+    window.location.href = '54.1.JPG';
+    break;
+case 'object55':
+    window.location.href = '55.JPG';
+    break;
+case 'object56':
+    window.location.href = '56.JPG';
+    break;
+case 'object57':
+    window.location.href = '57.JPG';
+    break;
+case 'object58':
+    window.location.href = '58.JPG';
+    break;
+case 'object59':
+    window.location.href = '59.JPG';
+    break;
+case 'object60':
+    window.location.href = '60.JPG';
+    break;
+case 'object61':
+    window.location.href = '61.JPG';
+    break;
+    case 'object62':
+    window.location.href = '62.JPG';
+    break;
+  case 'object63':
+    window.location.href = '63.JPG';
+    break;
+  case 'object64':
+    window.location.href = '64.JPG';
+    break;
+  case 'object65':
+    window.location.href = '65.JPG';
+    break;
+  case 'object66':
+    window.location.href = '66.JPG';
+    break;
+  case 'object67':
+    window.location.href = '67.JPG';
+    break;
+  case 'object68':
+    window.location.href = '68.JPG';
+    break;
+  case 'object69':
+    window.location.href = '69.JPG';
+    break;
+  case 'object70':
+    window.location.href = '70.JPG';
+    break;
+  case 'object71':
+    window.location.href = '71.JPG';
+    break;
+  case 'object72':
+    window.location.href = '72.JPG';
+    break;
+  case 'object73':
+    window.location.href = '73.JPG';
+    break;
+  case 'object74':
+    window.location.href = '74.JPG';
+    break;
+  case 'object75':
+    window.location.href = '75.JPG';
+    break;
+  case 'object76':
+    window.location.href = '76.JPG';
+    break;
+  case 'object77':
+    window.location.href = '77.JPG';
+    break;
+  case 'object78':
+    window.location.href = '78.JPG';
+    break;
+  case 'object79':
+    window.location.href = '79.JPG';
+    break;
+  case 'object80':
+    window.location.href = '80.JPG';
+    break;
+  case 'object81':
+    window.location.href = '81.JPG';
+    break;
+  case 'object82':
+    window.location.href = '82.JPG';
+    break;
+  case 'object83':
+    window.location.href = '83.JPG';
+    break;
+  case 'object84':
+    window.location.href = '84.JPG';
+    break;
+  case 'object85':
+    window.location.href = '85.JPG';
+    break;
+  case 'object86':
+    window.location.href = '86.JPG';
+    break;
+  case 'object87':
+    window.location.href = '87.JPG';
+    break;
+  case 'object88':
+    window.location.href = '88.JPG';
+    break;
+  case 'object89':
+    window.location.href = '89.JPG';
+    break;
+  case 'object90':
+    window.location.href = '90.JPG';
+    break;
+  case 'object91':
+    window.location.href = '91.JPG';
+    break;
+  case 'object92':
+    window.location.href = '92.JPG';
+    break;
+  case 'object93':
+    window.location.href = '93.JPG';
+    break;
+  case 'object94':
+    window.location.href = '94.JPG';
+    break;
+  case 'object95':
+    window.location.href = '95.JPG';
+    break;
+  case 'object96':
+    window.location.href = '96.JPG';
+    break;
+  case 'object97':
+    window.location.href = '97.JPG';
+    break;
+  case 'object98':
+    window.location.href = '98.JPG';
+    break;
+  case 'object99':
+    window.location.href = '99.JPG';
+    break;
+  case 'object100':
+    window.location.href = '100.JPG';
+    break;
+  case 'object101':
+    window.location.href = '101.JPG';
+    case 'object102':
+    window.location.href = '102.JPG';
+    break;
+  case 'object103':
+    window.location.href = '103.JPG';
+    break;
+  case 'object104':
+    window.location.href = '104.JPG';
+    break;
+  case 'object105':
+    window.location.href = '105.JPG';
+    break;
+  case 'object106':
+    window.location.href = '106.JPG';
+    break;
+  case 'object107':
+    window.location.href = '107.JPG';
+    break;
+  case 'object108':
+    window.location.href = '108.JPG';
+    break;
+  case 'object109':
+    window.location.href = '109.JPG';
+    break;
+  case 'object110':
+    window.location.href = '110.JPG';
+    break;
+  case 'object111':
+    window.location.href = '111.JPG';
+    break;
+  case 'object112':
+    window.location.href = '112.JPG';
+    break;
+  case 'object113':
+    window.location.href = '113.JPG';
+    break;
+  case 'object114':
+    window.location.href = '114.JPG';
+    break;
+  case 'object115':
+    window.location.href = '115.JPG';
+    break;
+  case 'object116':
+    window.location.href = '116.JPG';
+    break;
+  case 'object117':
+    window.location.href = '117.JPG';
+    break;
+  case 'object118':
+    window.location.href = '118.JPG';
+    break;
+  case 'object119':
+    window.location.href = '119.JPG';
+    break;
+  case 'object120':
+    window.location.href = '120.JPG';
+    break;
+  case 'object121':
+    window.location.href = '121.JPG';
+    break;
+  case 'object122':
+    window.location.href = '122.JPG';
+    break;
+  case 'object123':
+    window.location.href = '123.JPG';
+    break;
+  case 'object124':
+    window.location.href = '124.JPG';
+    break;
+  case 'object125':
+    window.location.href = '125.JPG';
+    break;
+  case 'object126':
+    window.location.href = '126.JPG';
+    break;
+  case 'object127':
+    window.location.href = '127.JPG';
+    break;
+  case 'object128':
+    window.location.href = '128.JPG';
+    break;
+  case 'object129':
+    window.location.href = '129.JPG';
+    break;
+  case 'object130':
+    window.location.href = '130.JPG';
+    break;
+  case 'object131':
+    window.location.href = '131.JPG';
+    break;
+  case 'object132':
+    window.location.href = '132.JPG';
+    break;
+  case 'object133':
+    window.location.href = '133.JPG';
+    break;
+  case 'object134':
+    window.location.href = '134.JPG';
+    break;
+  case 'object135':
+    window.location.href = '135.JPG';
+    break;
+  case 'object136':
+    window.location.href = '136.JPG';
+    break;
+  case 'object137':
+    window.location.href = '137.JPG';
+    break;
+  case 'object138':
+    window.location.href = '138.JPG';
+    break;
+  case 'object139':
+    window.location.href = '139.JPG';
+    break;
+  case 'object140':
+    window.location.href = '140.JPG';
+    break;
+    case 'object141':
+    window.location.href = '141.JPG';
+    break;
+case 'object142':
+    window.location.href = '142.JPG';
+    break;
+case 'object143':
+    window.location.href = '143.JPG';
+    break;
+case 'object144':
+    window.location.href = '144.JPG';
+    break;
+case 'object145':
+    window.location.href = '145.JPG';
+    break;
+    default:
+      break;
+  }
+});
+ 
+  });
+
+
+    // Function to get the highest z-index value among all the movable objects
+    function getHighestZIndex() {
+      let highestZIndex = 0;
+      movables.forEach(movable => {
+        const zIndex = parseInt(movable.style.zIndex);
+        if (zIndex && zIndex > highestZIndex) {
+          highestZIndex = zIndex;
+        }
+      });
+      return highestZIndex;
+    }
+  </script>
+</body>
+</html>

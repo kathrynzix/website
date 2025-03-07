@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Library of Alternative Timekeeping - 2024</title>
+
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+
+ <style>
+   body {
+     font-family: 'Roboto Mono', monospace;
+     font-size: 14px;
+     margin: 0;
+     padding: 0;
+     background-color: #edeff2;
+     padding-bottom: 100px; /* Add padding at bottom to accommodate toolbar */
+   }
+
+   .container {
+     padding: 0 20px;
+     max-width: 1200px;
+     margin: auto;
+   }
+
+   h1, h2, h3 {
+     text-align: center;
+   }
+
+   .description {
+     text-align: left;
+     margin-bottom: 40px;
+     font-size: 16px;
+   }
+
+   .slideshow-container {
+     max-width: 100%;
+     position: relative;
+     margin: 20px auto;
+   }
+
+   .slides {
+     display: none;
+     width: 100%;
+     height: auto;
+   }
+
+   .prev, .next {
+     cursor: pointer;
+     position: absolute;
+     top: 50%;
+     padding: 16px;
+     font-weight: bold;
+     font-size: 24px;
+     color: white;
+     user-select: none;
+     z-index: 10001;
+     background-color: rgba(0, 0, 0, 0.5);
+     border: none;
+   }
+
+   .prev { left: 0; }
+   .next { right: 0; }
+
+   .dot-container {
+     text-align: center;
+     padding: 10px;
+   }
+
+   .dot {
+     cursor: pointer;
+     height: 15px;
+     width: 15px;
+     margin: 0 5px;
+     background-color: #bbb;
+     border-radius: 50%;
+     display: inline-block;
+   }
+
+   .active, .dot:hover {
+     background-color: #717171;
+   }
+
+   .gallery {
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
+     gap: 10px;
+     margin-top: 20px;
+     width: 100%;
+   }
+
+   .gallery img {
+     width: 100%;
+     height: auto;
+     display: block;
+     border-radius: 8px;
+   }
+
+   .infinity-hole-gallery {
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
+     gap: 10px;
+     margin-top: 20px;
+     width: 100%;
+   }
+
+   .infinity-hole-gallery img {
+     width: 100%;
+     height: auto;
+     display: block;
+     border-radius: 8px;
+   }
+
+   .infinity-hole-horizontal {
+     grid-column: span 2;
+   }
+
+   .individual-works {
+     background-color: #edeff2;
+     max-width: 1200px;
+     margin: 0 auto;
+     padding: 20px;
+     font-size: 16px;
+   }
+
+   .individual-works .work, 
+   .individual-works .time-place {
+     background-color: #fff;
+     border-radius: 8px;
+     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+     margin-bottom: 20px;
+     padding: 20px;
+     text-align: center;
+   }
+
+   .individual-works .gallery {
+     display: inline-grid;
+     grid-template-columns: repeat(2, 1fr);
+     gap: 10px;
+     width: 100%;
+     max-width: 1200px;
+     margin: 0 auto;
+   }
+
+   .individual-works img {
+     width: 100%;
+     height: auto;
+     object-fit: contain;
+   }
+
+   .individual-works p {
+     text-align: left;
+     margin-top: 10px;
+   }
+
+   /* Style for the toolbar iframe */
+   iframe {
+     border: none;
+     width: 100%;
+     height: 100px; /* Initial height to accommodate the menu */
+     position: fixed;
+     bottom: 0;
+     left: 0;
+     z-index: 10000; /* Ensure iframe is on top */
+     pointer-events: none; /* Disable pointer events by default */
+   }
+ </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Library of Alternative Timekeeping</h1>
+    <h2>2024</h2>
+    <h3>Mixed Media Installation</h3>
+
+    <!-- Slideshow container -->
+    <div class="slideshow-container">
+      <img class="slides" src="01.jpg" alt="Image 01">
+      <img class="slides" src="02.jpg" alt="Image 02">
+      <img class="slides" src="03.jpg" alt="Image 03">
+      <img class="slides" src="05.jpg" alt="Image 05">
+      <img class="slides" src="07.jpg" alt="Image 07">
+      <img class="slides" src="08.jpg" alt="Image 08">
+      <img class="slides" src="14.jpg" alt="Image 14">
+      <img class="slides" src="15.jpg" alt="Image 15">
+      <img class="slides" src="16.jpg" alt="Image 16">
+      <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+      <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    </div>
+
+    <!-- Dots for navigation -->
+    <div class="dot-container">
+      <span class="dot" onclick="currentSlide(1)"></span> 
+      <span class="dot" onclick="currentSlide(2)"></span> 
+      <span class="dot" onclick="currentSlide(3)"></span>
+      <span class="dot" onclick="currentSlide(4)"></span>
+      <span class="dot" onclick="currentSlide(5)"></span>
+      <span class="dot" onclick="currentSlide(6)"></span>
+      <span class="dot" onclick="currentSlide(7)"></span>
+      <span class="dot" onclick="currentSlide(8)"></span>
+      <span class="dot" onclick="currentSlide(9)"></span>
+    </div>
+
+    <!-- Static photo gallery below the slideshow -->
+    <div class="gallery">
+      <img src="04.jpg" alt="Image 04">
+      <img src="06.jpg" alt="Image 06">
+      <img src="09.jpg" alt="Image 09">
+      <img src="17.jpg" alt="Image 17">
+    </div>
+
+    <!-- Paragraph moved below the images -->
+    <div class="description">
+      <p><i>Library of Alternative Timekeeping</i> was an installation that explored the interconnected
+      themes of time, temporality, and technological advancement. The installation functioned
+      as a library where visitors engaged with works on time and reflected on their own bodily and personal
+      experiences of time. Central to the installation were notions of non-linear and non-standardized time,
+      challenging conventional understandings of temporality that have been mediated by digital technologies.
+      The collection of books included personal narratives, creative works, and theoretical texts
+      on time, some of which I wrote myself and others which I collected. Included works explore new ways
+      of understanding our relationship to time, utilizing social, geographical, and cultural frameworks
+      that depart from colonial linearity or exist alongside it. Through engagement with the installation,
+      visitors are invited to reconsider their relationship to memory, technology, and the passage of time in the 
+      digital age.</p>
+    </div>
+  </div>
+
+  <div class="individual-works">
+    <div class="time-place">
+      <h3>Time/Place</h3>
+      <!-- Grid for Time/Place images -->
+      <div class="gallery">
+        <img src="time-place_04.JPG">
+        <img src="time-place_05.jpg">
+        <img src="time-place.jpg" alt="Time Place 1">
+        <img src="time-place_01.jpg" alt="Time Place 2">
+        <img src="time-place_02.jpg" alt="Time Place 3">
+        <img src="time-place_03.jpg" alt="Time Place 4">
+    
+      </div>
+      <p><i>Time/Place</i> is an artist's book that explores the relationship between
+        contemporary time and place. It also contrasts natural and bodily experiences of time with the time of
+        man-made environments. It is bound in the <i>tête-bêche</i> style, meaning that it 
+        is meant to be turned over and read from each side up to the middle section.</p>
+    </div>
+    <div class="work">
+      <h3>Infinity Hole</h3>
+      <!-- Infinity Hole gallery with new layout class -->
+      <div class="infinity-hole-gallery">
+        <img src="InfinityHole_01.jpg" alt="Infinity Hole Vertical 1">
+        <img src="InfinityHole_02.jpg" alt="Infinity Hole Vertical 2">
+        <img src="InfinityHole.jpg" alt="Infinity Hole Horizontal" class="infinity-hole-horizontal">
+      </div>
+      <p><i>Infinity Hole</i> is an artist's book in accordion format that explores the contemporary
+        digitally-mediated temporal experience. It juxtaposes career and capital-oriented thinking
+        about the future with the pervasive sense of impending doom brought on by climate change
+        and societal unrest.</p>
+    </div>
+
+    <div class="work">
+      <h3>Digital Detritus</h3>
+      <div class="gallery">
+        <img src="10.jpg" alt="Digital Detritus 1">
+        <img src="11.jpg" alt="Digital Detritus 2">
+        <img src="digital_01.jpg" alt="Digital Detritus 3">
+         <img src="digital_03.jpg" alt="Digital Detritus 5">
+        <img src="digital_02.jpg" alt="Digital Detritus 4" class="infinity-hole-horizontal">
+       
+      </div>
+      <p><i>Digital Detritus</i> is an artist's book that explores the markers of time we leave 
+      behind in the digital realm. It discusses the relationship between memory, identity, and digital
+       artifacts scattered across the Internet. From childhood experiments with online platforms
+       to contemporary reflections on the enduring presence of digital creations, the book delves 
+       into the ways in which our digital footprints serve as snapshots of our existence. 
+    </p>
+    </div>
+
+    <div class="work">
+      <h3>Scrap Book</h3>
+      <div class="gallery">
+        <img src="scrapbook.jpg">
+        <img src="scrapbook_01.jpg">
+      </div>
+      <p><i>Scrap Book</i> is an artist's book consisting of scraps, sketches, notes, and other materials gathered from my studio during 
+        the making of the thesis project. It provides a concrete record of the time spent creating the Library of Alternative Timekeeping. As readers 
+        flip through its pages, they gain insight into the artistic process and the effort invested in bringing the installation to fruition. 
+        By documenting the physical artifacts of creation, "Scrap Book" offers a transparent look at the work behind the scenes and allows viewers to 
+        appreciate the dedication required to complete the project. The act of collecting and preserving these scraps serves as a form of timekeeping in itself, 
+        capturing ideas at each step of their actualization (or lack thereof). 
+    </p>
+    </div>
+    
+
+    <div class="work">
+      <h3>Visual Memoir Workshop</h3>
+      <div class="gallery">
+        <img src="visualmemoirposter.jpg">
+        <img src="workshop_05.jpg">
+        <img src="workshop_02.JPG">
+        <img src="workshop_03.JPG">
+        <img src="workshop_04.JPG">
+        <img src="memoir_02.jpg">
+        <img src="memoir_01.jpg" class="infinity-hole-horizontal">
+        
+      </div>
+      <p>The Visual Memoir Workshop was a two-part workshop I held at the Reed College Visual Resources Center (VRC) 
+        in which I directed participants in developing a collecting practice and creating a visual memoir to document their lives. </p>
+      <p>The first workshop introduced the project and provided information about personal archival practice. I showed participants how to create journals using a pamphlet stitch 
+        and went over the available equipment in the VRC. Participants were then given a one-week collecting period so that the workshop would be accessible to those who didn't have a 
+        pre-existing collecting practice but wanted to create one! </p>
+      <p>At the second workshop, participants created their visual memoirs, which I compiled into a book. The goal of the workshop was to explore creative methods of documenting one's life and to create a collective archive. I was interested in the participatory nature of archiving and the interconnectedness of personal histories within broader temporal frameworks. These visual representations of moments, memories, and experiences serve as a collective exploration of individual experiences of time. They are tangible representations of an individual's journey through time, capturing moments, memories, and experiences that shape their identity and legacy.
+        
+    </p>
+    </div>
+
+    <div class="work">
+      <h3>Inventory of Other Works</h3>
+      <p> In gathering works for the library, my intention was to create a diverse collection that spans a wide range of genres, perspectives, and styles. 
+        Central to my vision was the exploration of diverse temporal experiences and the myriad ways in which time can be documented and understood. 
+        Through the inclusion of works that vary in their approach to timekeeping and storytelling, I sought to highlight the impact of technologies on our 
+        perception of time and the ways in which different historical periods intersect and inform our present moment. While the collection primarily 
+        focuses on contemporary literature, I also sought to incorporate works from various time periods.</p>
+
+       
+      <p><a href= https://alexandraharris.co.uk/books/time-place><i>Time and Place: A Pocket Book on the Art of Calendars</i></a> by Alexandra Harris explores different forms of calendar-making, both historical and contemporary. </p>
+      <p><a href=https://www.printedmatter.org/catalog/55014/ >'Weekend'</a> by Erlend Peder Kvam tells a humorous story about weekend leisure time and its departure from the activities of the work week.</p>
+      <p>'Buncha Balogney #1' by Jerry James is a collection of artworks that seem to revolve around themes of existential dread and disillusionment with the demands of contemporary society and the relentless pursuit of productivity at the 
+        expense of personal fulfillment. It speaks to the feeling of being trapped in a job that consumes valuable time and energy, reducing individuals to mere cogs in a larger industrial machine. </p>
+      <p><a href=https://www.blackquantumfuturism.com/product-page/bqf-theory-practice-vol-i> <i>Black Quantum Futurism: Theory and Practice</i></a> is a collection of writings that merge quantum physics with afrofuturism, 
+        exploring the intersections of race, gender, space, and time. It challenges traditional notions of time and space, advocating for a nonlinear understanding of reality that acknowledges the interconnectedness of past, present, and future.</p>
+      <p><a href=https://www.printedmatter.org/catalog/64128/ >'Today Dinosaur'</a> by Will Duncan is a collection of works that address the experience of the digital landscape of the modern age. Like navigating the labyrinthine corridors of the internet, 
+        Duncan's collection captures the frenetic energy and disjointed nature of our digitally-mediated society. Time is experienced in a disjointed, non-linear fashion, where moments blur together in a whirlwind of fleeting impressions. The collection has a sense of urgency and immediacy, reflecting the relentless pace of information production and consumption.</p>
+      <p><a href=https://www.andyleuenberger.com/books_40.html>'The Holy'</a> by Andy Leuenberger is a sci-fi comic from the series Dead Time Data and takes place in "Dead Time," which Leuenberger describes as "the interval between units of measurement that cannot be measured and therefore has a potential for error." In the comic, the line between the real and the virtual is distorted by over-stimulation. </p>
+      <p>'The Philosophy of the Television' by Liam Autumn explores how television shapes one's perception of time and oneself.</p>
+      <p><a href=https://www.footprinters.co.uk/product/guff-a-comic-anthology-issue-2-by-kai-reynolds/ >'Guff: Issue #2'</a> by Kai Reynolds is a compilation of works in various mediums. Of particular interest to me was the section in which Reynolds documents their journey to their childhood home through the pages of a journal. In the journal, they explore memory and identity in relation to place. </p>
+      <p>'Compisition Notebook' by Maggie Overby is a zine that describes a childhood moment in which Overby is drinking a Shirley temple, but is interrupted by her mother telling her it is time for dinner.</p>
+      <p>'Scrap Book,' compiled by Kenneth Spink, is a scrap book containing newspaper clippings about the state of Oregon. The book appears to have been a homework assignment on the history of the state. </p>
+      <p><a href=https://www.wiley.com/en-us/Time-p-9780745627786><i>Time</i></a> by Barbara Adam delves into the intricacies of how time shapes and is shaped by human activities, technology, and the environment. The book analyzes the conventional concepts of time, providing a more nuanced understanding that considers its social, technological, and ecological dimensions, ultimately arguing for a greater awareness of time's critical influence on all aspects of life. </p>
+      <p><a href=https://www.maloneydoodles.com/cosmic-fern>'Cosmic Fern'</a> by Sarah Maloney follows two loves who travel to a botanical moon and take a hallucinogenic spore, leading them to reconsider their connection with time and plants. </p>
+      <p><a href= https://search.worldcat.org/en/title/288932835><i>Cartographies of Time: A History of the Timeline</i></a> by Daniel Rosenberg and Anthony Grafton provides a detailed historical account of the evolution of timelines, illustrating how the visual representation of time has developed alongside changes in culture, technology, and historical thought. </p>
+      <p><a href=https://www.hup.harvard.edu/books/9780674002821><i>Revolution in Time: Clocks and the Making of the Modern World</i></a> by David Landes examines the profound impact of mechanical clocks on global society, detailing how their invention and subsequent evolution drove the standardization of time, influenced industrial practices, and fundamentally altered the structure of daily life, thereby playing a crucial role in the development of modern society.</p>
+      <p><a href=https://www.sup.org/books/business/human-organization-time><i>The Human Organization of Time: Temporal Realities and Experience</i></a> by Allen C. Bluedorn analyzes how individuals and organizations perceive and manage time, analyzing its influence on behavior, culture, and organizational processes. The book discusses various temporal structures and their implications for personal life and work, emphasizing the role of time in shaping social interactions and organizational effectiveness.</p>
+      <p><a href=https://press.uchicago.edu/ucp/books/book/chicago/P/bo19085612.html><i>Pressed for Time: The Acceleration of Life in Digital Capitalism</i></a> by Judy Wajcman argues that digital technology, rather than freeing up our time, has increased the pace of life, contributing to a sense of time scarcity. The book examines how technological advancements shape our perceptions of time and urgency, questioning the notion that increased efficiency leads to more leisure time and proposing a reevaluation of our relationship with time in the digital age. </p>
+    </div>
+  </div>
+
+  <!-- Add the iframe for the toolbar -->
+  <iframe src="../toolbar.html" frameborder="0"></iframe>
+
+  <script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function changeSlide(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      let slides = document.getElementsByClassName("slides");
+      let dots = document.getElementsByClassName("dot");
+
+      if (n > slides.length) {
+        slideIndex = 1;
+      }
+      if (n < 1) {
+        slideIndex = slides.length;
+      }
+
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].className += " active";
+    }
+
+    // Function to adjust the iframe height based on the menu height
+    function adjustIframeHeight(height) {
+      const iframe = document.querySelector('iframe');
+      iframe.style.height = height + 'px';
+    }
+
+    // Listen for messages from the iframe
+    window.addEventListener('message', (event) => {
+      if (event.data.type === 'menu') {
+        const iframe = document.querySelector('iframe');
+        iframe.style.height = event.data.height + 'px'; // Adjust height to include menu
+        iframe.style.pointerEvents = 'auto'; // Enable pointer events when menu is visible
+      }
+    });
+
+    // Function to enable iframe pointer events
+    function enableIframePointerEvents() {
+      const iframe = document.querySelector('iframe');
+      iframe.style.pointerEvents = 'auto'; // Enable pointer events
+    }
+
+    // Function to disable iframe pointer events
+    function disableIframePointerEvents() {
+      const iframe = document.querySelector('iframe');
+      iframe.style.pointerEvents = 'none'; // Disable pointer events
+    }
+
+    // Initial iframe height adjustment
+    window.addEventListener('load', () => {
+      const iframe = document.querySelector('iframe');
+      iframe.style.height = '40px'; // Default height for the toolbar
+    });
+
+    // Listen for clicks to enable draggable objects interaction
+    document.addEventListener('click', () => {
+      enableIframePointerEvents();
+    });
+  </script>
+</body>
+</html>

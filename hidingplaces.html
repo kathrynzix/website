@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hiding Places</title>
+  <link rel="shortcut icon" href="Blank 7.png">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .image-container {
+      height: 600vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow-y: auto;
+    }
+
+    .image-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: calc(100vh - 20px);
+      margin: 10px;
+    }
+
+    .image-wrapper img {
+      margin: 10px;
+      max-height: calc(100vh - 40px);
+      max-width: calc(100vh - 40px);
+      object-fit: contain;
+    }
+
+    .vertical {
+      width: calc(100vh - 40px);
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="image-container">
+    <div class="image-wrapper">
+      <img class="vertical" src="01.jpg">
+    </div>
+    <div class="image-wrapper">
+      <img src="02.jpg">
+    </div>
+    <div class="image-wrapper">
+      <img src="03.jpg">
+    </div>
+    <div class="image-wrapper">
+      <img src="04.jpg">
+    </div>
+    <div class="image-wrapper">
+      <img class="vertical" src="05.jpg">
+    </div>
+    <div class="image-wrapper">
+      <img src="06.jpg">
+    </div>
+    <div class="image-wrapper">
+      <img src="07.jpg">
+    </div>
+  </div>
+</body>
+</html>
