@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>kathryn's computer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="computer_search.png">
+  <style>
+    /* Basic styling */
+    body {
+      background-color: #c83289; /* Using your specified color */
+      font-family: 'Roboto Mono', monospace;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+    
+    /* Style for the image grid - now 2x1 */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 1fr;
+      gap: 25px;
+      max-width: 600px;
+      width: 90%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    .grid-item {
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      transition: transform 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .grid-item:hover {
+      transform: translateY(-5px);
+    }
+    
+    .grid-item img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain; /* Changed from cover to contain */
+      display: block;
+    }
+    
+    /* Style for the toolbar iframe */
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100px; /* Initial height to accommodate the menu */
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      z-index: 10000; /* Ensure iframe is on top */
+      pointer-events: none; /* Disable pointer events by default */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 2x1 Image Grid -->
+  <div class="grid-container">
+    <a href="emg/index.html" class="grid-item">
+      <img src="emg/everythingmustgo.png" alt="Everything Must Go">
+    </a>
+    <a href="trash/trash.html" class="grid-item">
+      <img src="trash/trash.png" alt="Trash">
+    </a>
+  </div>
+  
+  <!-- Toolbar iframe -->
+  <iframe src="toolbar.html" frameborder="0"></iframe>
+  
+  <script>
+    // Function to adjust the iframe height based on the menu height
+    function adjustIframeHeight(height) {
+      const iframe = document.querySelector('iframe');
+      iframe.style.height = height + 'px';
+    }
+
+    // Listen for messages from the iframe
+    window.addEventListener('message', (event) => {
+      if (event.data.type === 'menu') {
+        const iframe = document.querySelector('iframe');
+        iframe.style.height = event.data.height + 'px'; // Adjust height to include menu
+        iframe.style.pointerEvents = 'none'; // Disable pointer events for iframe
+      }
+    });
+
+    // Function to enable iframe pointer events
+    function enableIframePointerEvents() {
+      const iframe = document.querySelector('iframe');
+      iframe.style.pointerEvents = 'auto'; // Enable pointer events
+    }
+
+    // Function to disable iframe pointer events
+    function disableIframePointerEvents() {
+      const iframe = document.querySelector('iframe');
+      iframe.style.pointerEvents = 'none'; // Disable pointer events
+    }
+
+    // Initial iframe height adjustment
+    window.addEventListener('load', () => {
+      const iframe = document.querySelector('iframe');
+      iframe.style.height = '100px'; // Default height for the toolbar
+    });
+
+    // Listen for clicks to enable draggable objects interaction
+    document.addEventListener('click', () => {
+      enableIframePointerEvents();
+    });
+  </script>
+</body>
+</html>
