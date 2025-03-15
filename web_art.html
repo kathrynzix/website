@@ -14,30 +14,33 @@
       margin: 0;
       padding: 0;
       height: 100vh;
-      overflow: hidden;
+      overflow: auto; /* Allow page to scroll if needed */
     }
     
     /* Style for the image grid - now 2x1 */
     .grid-container {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: 1fr;
+      grid-template-rows: auto;
       gap: 25px;
       max-width: 600px;
       width: 90%;
       position: absolute;
-      top: 50%;
+      top: 45%; /* Adjusted slightly up to allow for more text */
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -45%);
+      padding-bottom: 120px; /* Add padding to ensure content is visible above toolbar */
     }
     
     .grid-item {
-      aspect-ratio: 1/1;
-      overflow: hidden;
-      transition: transform 0.2s;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      text-decoration: none;
+      color: #ffffff;
+      transition: transform 0.2s;
+      overflow: visible; /* Allow content to be fully visible */
     }
     
     .grid-item:hover {
@@ -46,9 +49,29 @@
     
     .grid-item img {
       max-width: 100%;
-      max-height: 100%;
-      object-fit: contain; /* Changed from cover to contain */
+      max-height: 200px; /* Fixed height for images */
+      object-fit: contain;
       display: block;
+      margin-bottom: 10px;
+    }
+    
+    .icon-description {
+      text-align: left; /* Left justified text */
+      font-size: 12px;
+      margin-top: 5px;
+      width: 100%;
+      color: #ffffff;
+      line-height: 1.4;
+      padding-bottom: 20px; /* Add padding at bottom */
+    }
+    
+    .icon-title {
+      font-weight: bold;
+      margin-bottom: 2px;
+      font-size: 14px;
+      color: #ffffff;
+      align-self: flex-start; /* Align title to the left */
+      width: 100%;
     }
     
     /* Style for the toolbar iframe */
@@ -70,9 +93,19 @@
   <div class="grid-container">
     <a href="emg/index.html" class="grid-item">
       <img src="emg/everythingmustgo.png" alt="Everything Must Go">
+      <div class="icon-title">Everything Must Go! ★ 2023</div>
+      <div class="icon-description">
+        Exploring the internet webpage as a landscape. Humanity's relationship with nature. How the increasing commercialization of the Internet can be mapped onto this relationship, perhaps as real estate that is for sale.
+        <br><br>
+        The Internet as an amalgamation of information from various eras, all compressed within the interface of the computer screen. Everything from every time period, of every medium ends up on the Internet. To this end, everything is available for commerce, including the Internet itself.
+      </div>
     </a>
     <a href="trash/trash.html" class="grid-item">
       <img src="trash/trash.png" alt="Trash">
+      <div class="icon-title">trash ★ 2023</div>
+      <div class="icon-description">
+        Using skeuomorphism to envision trash around my neighborhood as digital icons.
+      </div>
     </a>
   </div>
   
