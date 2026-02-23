@@ -94,7 +94,7 @@ iframe {
     <img src="kathrynzix.png" width="100%">
   </div>
   <script>
-    var backgroundColors = ["#3A3E5C" , "#29716B" , "#065F73"];
+    var backgroundColors = ["#29716B" , "#065F73"];
     function setBackground() {
       var i = Math.floor(Math.random() * backgroundColors.length);
       document.body.style.backgroundColor = backgroundColors[i];
@@ -157,7 +157,7 @@ iframe {
       </div>
     </div>
 
-    <div class="movable" id="object3" style="left: calc(100% - 160px); top: calc(100% - 220px);">
+   <!-- <div class="movable" id="object3" style="left: calc(100% - 160px); top: calc(100% - 220px);">
       <img src="folder.png" draggable="false">
       <div class="text-container">
         <p>photo</p>
@@ -169,7 +169,7 @@ iframe {
       <div class="text-container">
         <p>video</p>
       </div>
-    </div>
+    </div> -->
 
     <div class="movable" id="object5" style="left: calc(100% - 460px); top: calc(100% - 220px);">
       <img src="webfolder.png" draggable="false">
@@ -178,7 +178,7 @@ iframe {
       </div>
     </div>
 
-    <div class="movable" id="object6" style="left: calc(100% - 160px); top: calc(100% - 370px);">
+    <!-- <div class="movable" id="object6" style="left: calc(100% - 160px); top: calc(100% - 370px);">
       <img src="folder.png" draggable="false">
       <div class="text-container">
         <p>book arts</p>
@@ -190,15 +190,15 @@ iframe {
       <div class="text-container">
         <p>resume</p>
       </div>
-    </div>
+    </div> -->
 
     <!-- Add the new "posters" object -->
-    <div class="movable" id="object8" style="left: calc(100% - 610px); top: calc(100% - 220px);">
+   <!-- <div class="movable" id="object8" style="left: calc(100% - 610px); top: calc(100% - 220px);">
       <img src="folder.png" draggable="false">
       <div class="text-container">
         <p>posters</p>
       </div>
-    </div>
+    </div> -->
 
     <script>
       // Get all the movable objects
@@ -259,16 +259,16 @@ iframe {
             case 'object2':
               window.location.href = 'estate sale/estate_sale.html';
               break;
-            case 'object3':
+         /*   case 'object3':
               window.location.href = 'photo.html';
               break;
             case 'object4':
               window.location.href = 'video.html';
-              break;
+              break; */
             case 'object5':
               window.location.href = 'web_art.html';
               break;
-            case 'object6':
+           /* case 'object6':
               window.location.href = 'book_arts.html';
               break;
             case 'object7':
@@ -276,7 +276,7 @@ iframe {
               break;
             case 'object8':
               window.location.href = 'posters.html';
-              break;
+              break; */
           }
         });
       });
