@@ -11,7 +11,6 @@
    /* Style for the movable objects */
 .movable {
   width: 100px;
-  height: 100px;
   border: none;
   padding: 0;
   background-color: transparent;
@@ -34,7 +33,7 @@
 .movable img {
   display: block;
   margin: 0 auto;
-  width: 100%;
+  width: 60px;
   height: auto;
 }
 
@@ -55,9 +54,9 @@
 .text-container p {
   margin: 0;
   font-family: 'Roboto Mono', monospace;
-  font-size: 15px;
+  font-size: 12px;
   background-color: transparent; /* Ensure text background is transparent */
-  color: #000; /* Set text color */
+  color: #ffffff; /* Set text color */
 }
 
 /* Text styling */
@@ -143,14 +142,14 @@ iframe {
 
   <div>
     <!-- Create multiple movable objects with set initial positions -->
-    <div class="movable" id="object1" style="left: 50px; top: 50px;">
+    <div class="movable" id="object1" style="left: 10px; top: 50px;">
       <img src="clock.png" draggable="false">
       <div class="text-container">
         <p>library of alternative timekeeping</p>
       </div>
     </div>
 
-    <div class="movable" id="object2" style="left: 50px; top: 220px;">
+    <div class="movable" id="object2" style="left: 10px; top: 220px;">
       <img src="newspaper.png" draggable="false">
       <div class="text-container">
         <p>estate sale</p>
