@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>video art</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="computer_search.png">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Roboto Mono', monospace;
+      background-color: #065F73;
+    }
+
+    .page-title {
+      position: absolute;
+      left: 70px;
+      top: 70px;
+      color: white;
+    }
+
+    .page-title h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: normal;
+    }
+
+    .page-title p {
+      margin-top: 5px;
+      font-size: 12px;
+    }
+
+    .video-icon {
+      position: absolute;
+      width: 90px;
+      text-align: center;
+      cursor: pointer;
+      color: white;
+      font-size: 11px;
+      user-select: none;
+    }
+
+    .video-icon img {
+      width: 60px;
+      height: auto;
+      display: block;
+      margin: 0 auto 5px auto;
+    }
+
+    #videoIcon1 {
+      left: 70px;
+      top: 180px;
+    }
+
+    #videoIcon2 {
+      left: 190px;
+      top: 180px;
+    }
+
+    .video-window {
+      display: none;
+      position: absolute;
+      left: 300px;
+      top: 120px;
+      width: 720px;
+      height: 500px;
+      background: #c0c0c0;
+      border: 2px solid black;
+      box-shadow: 5px 5px 0 rgba(0,0,0,.35);
+      z-index: 5000;
+    }
+
+    #videoWindow2 {
+      left: 340px;
+      top: 160px;
+    }
+
+    .video-window.maximized {
+      left: 0 !important;
+      top: 0 !important;
+      transform: none !important;
+      width: 100vw;
+      height: calc(100vh - 45px);
+    }
+
+    .title-bar {
+      height: 30px;
+      background: #065F73;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 8px;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .title-bar:active {
+      cursor: grabbing;
+    }
+
+    .window-buttons {
+      display: flex;
+      gap: 4px;
+    }
+
+    .window-buttons button {
+      width: 24px;
+      height: 22px;
+      border: 1px solid black;
+      background: #e6e6e6;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 18px;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .video-frame {
+      width: 100%;
+      height: calc(100% - 30px);
+      background: black;
+    }
+
+    .video-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .minimized-video {
+      display: none;
+      position: fixed;
+      bottom: 45px;
+      background: #c0c0c0;
+      border: 2px solid black;
+      padding: 5px 12px;
+      cursor: pointer;
+      z-index: 10001;
+      font-size: 12px;
+    }
+
+    #minimizedVideo1 {
+      left: 10px;
+    }
+
+    #minimizedVideo2 {
+      left: 180px;
+    }
+
+    iframe.toolbar {
+      border: none;
+      width: 100%;
+      height: 100px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      z-index: 10000;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="page-title">
+  <h1>video art</h1>
+  <p>selected works</p>
+</div>
+
+<div class="video-icon" id="videoIcon1" onclick="openVideoWindow('videoWindow1')">
+  <img src="nowherenowhere1.png" alt="nowhere nowhere">
+  <div>(nowhere, nowhere)</div>
+</div>
+
+<div class="video-icon" id="videoIcon2" onclick="openVideoWindow('videoWindow2')">
+  <img src="commviewer.png" alt="comm viewer">
+  <div>comm viewer</div>
+</div>
+
+<div class="video-window" id="videoWindow1">
+  <div class="title-bar">
+    <span>(nowhere, nowhere)</span>
+    <div class="window-buttons">
+      <button onclick="minimizeVideoWindow('videoWindow1','minimizedVideo1')">−</button>
+      <button onclick="maximizeVideoWindow('videoWindow1')">□</button>
+      <button onclick="closeVideoWindow('videoWindow1')">×</button>
+    </div>
+  </div>
+
+  <div class="video-frame">
+    <iframe
+      src="https://www.youtube.com/embed/kztjTrmKCmg"
+      title="(nowhere, nowhere)"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>
+
+<div class="video-window" id="videoWindow2">
+  <div class="title-bar">
+    <span>comm viewer</span>
+    <div class="window-buttons">
+      <button onclick="minimizeVideoWindow('videoWindow2','minimizedVideo2')">−</button>
+      <button onclick="maximizeVideoWindow('videoWindow2')">□</button>
+      <button onclick="closeVideoWindow('videoWindow2')">×</button>
+    </div>
+  </div>
+
+  <div class="video-frame">
+    <iframe
+      src="YOUTUBE_EMBED_LINK_HERE"
+      title="comm viewer"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>
+
+<div class="minimized-video" id="minimizedVideo1" onclick="restoreVideoWindow('videoWindow1','minimizedVideo1')">
+  (nowhere, nowhere)
+</div>
+
+<div class="minimized-video" id="minimizedVideo2" onclick="restoreVideoWindow('videoWindow2','minimizedVideo2')">
+  comm viewer
+</div>
+
+<iframe class="toolbar" src="toolbar.html"></iframe>
+
+<script>
+function openVideoWindow(id) {
+  const windowEl = document.getElementById(id);
+  windowEl.style.display = 'block';
+  windowEl.style.zIndex = getHighestZIndex() + 1;
+}
+
+function closeVideoWindow(id) {
+  const windowEl = document.getElementById(id);
+  windowEl.style.display = 'none';
+
+  const iframe = windowEl.querySelector('iframe');
+  iframe.src = iframe.src;
+}
+
+function maximizeVideoWindow(id) {
+  document.getElementById(id).classList.toggle('maximized');
+}
+
+function minimizeVideoWindow(id, minimized) {
+  document.getElementById(id).style.display = 'none';
+  document.getElementById(minimized).style.display = 'block';
+}
+
+function restoreVideoWindow(id, minimized) {
+  const windowEl = document.getElementById(id);
+  windowEl.style.display = 'block';
+  windowEl.style.zIndex = getHighestZIndex() + 1;
+  document.getElementById(minimized).style.display = 'none';
+}
+
+function getHighestZIndex() {
+  let highest = 0;
+  document.querySelectorAll('*').forEach(el => {
+    const z = parseInt(window.getComputedStyle(el).zIndex);
+    if (!isNaN(z) && z > highest) highest = z;
+  });
+  return highest;
+}
+
+document.querySelectorAll('.video-window').forEach(windowEl => {
+  const titleBar = windowEl.querySelector('.title-bar');
+
+  let isDragging = false;
+  let offsetX = 0;
+  let offsetY = 0;
+
+  titleBar.addEventListener('pointerdown', (e) => {
+    if (e.target.tagName === 'BUTTON') return;
+    if (windowEl.classList.contains('maximized')) return;
+
+    isDragging = true;
+    windowEl.style.zIndex = getHighestZIndex() + 1;
+
+    const rect = windowEl.getBoundingClientRect();
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+
+    windowEl.style.left = rect.left + 'px';
+    windowEl.style.top = rect.top + 'px';
+
+    titleBar.setPointerCapture(e.pointerId);
+  });
+
+  titleBar.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+
+    windowEl.style.left = (e.clientX - offsetX) + 'px';
+    windowEl.style.top = (e.clientY - offsetY) + 'px';
+  });
+
+  titleBar.addEventListener('pointerup', (e) => {
+    isDragging = false;
+    titleBar.releasePointerCapture(e.pointerId);
+  });
+});
+
+window.addEventListener('message', (event) => {
+  if (event.data.type === 'menu') {
+    const iframe = document.querySelector('.toolbar');
+    iframe.style.height = event.data.height + 'px';
+    iframe.style.pointerEvents = 'none';
+  }
+});
+
+document.addEventListener('click', () => {
+  document.querySelector('.toolbar').style.pointerEvents = 'auto';
+});
+</script>
+
+</body>
+</html>
