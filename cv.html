@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CV — kathryn's computer</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="msagent-3.png">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto Mono', monospace;
+      background-color: #edeff2;
+      color: #111;
+    }
+
+    .cv-container {
+      max-width: 1100px;
+      margin: 45px auto 120px;
+      padding: 0 30px;
+    }
+
+    .cv-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .page-title {
+      font-size: 22px;
+      font-weight: normal;
+      margin: 0;
+    }
+
+    .download-link {
+      font-size: 12px;
+      color: #111;
+      text-decoration: underline;
+    }
+
+    .pdf-viewer {
+      width: 100%;
+      height: 85vh;
+      min-height: 600px;
+      border: 1px solid #aaa;
+      background-color: #fff;
+    }
+
+    /* Toolbar */
+
+    iframe.toolbar {
+      border: none;
+      width: 100%;
+      height: 100px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      z-index: 10000;
+      pointer-events: auto;
+    }
+
+    /* Mobile */
+
+    @media screen and (max-width: 600px) {
+
+      .cv-container {
+        margin: 30px auto 110px;
+        padding: 0 12px;
+      }
+
+      .page-title {
+        font-size: 20px;
+      }
+
+      .cv-header {
+        margin-bottom: 15px;
+      }
+
+      .download-link {
+        font-size: 11px;
+      }
+
+      .pdf-viewer {
+        height: 75vh;
+        min-height: 500px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <main class="cv-container">
+
+    <div class="cv-header">
+      <h1 class="page-title">CV</h1>
+    </div>
+
+    <iframe
+      class="pdf-viewer"
+      src="zix_cv.pdf"
+      title="Kathryn Zix CV">
+    </iframe>
+
+  </main>
+
+  <!-- Shared Toolbar -->
+
+  <iframe class="toolbar" src="toolbar.html"></iframe>
+
+  <script>
+    window.addEventListener('message', (event) => {
+      if (event.data.type === 'menu') {
+        const iframe = document.querySelector('.toolbar');
+        iframe.style.height = event.data.height + 'px';
+        iframe.style.pointerEvents = 'none';
+      }
+    });
+
+    document.addEventListener('click', () => {
+      document.querySelector('.toolbar').style.pointerEvents = 'auto';
+    });
+  </script>
+
+</body>
+</html>

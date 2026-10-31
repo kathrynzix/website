@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>kathryn's computer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="computer_search.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Basic styling */
+    body {
+      background-color: #c83289; /* Using your specified color */
+      font-family: 'Roboto Mono', monospace;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: auto; /* Allow page to scroll if needed */
+    }
+    
+    /* Style for the image grid - now 2x1 */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto;
+      gap: 25px;
+      max-width: 600px;
+      width: 90%;
+      position: absolute;
+      top: 45%; /* Adjusted slightly up to allow for more text */
+      left: 50%;
+      transform: translate(-50%, -45%);
+      padding-bottom: 120px; /* Add padding to ensure content is visible above toolbar */
+    }
+    
+    .grid-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-decoration: none;
+      color: #ffffff;
+      transition: transform 0.2s;
+      overflow: visible; /* Allow content to be fully visible */
+    }
+    
+    .grid-item:hover {
+      transform: translateY(-5px);
+    }
+    
+    .grid-item img {
+      max-width: 100%;
+      max-height: 200px; /* Fixed height for images */
+      object-fit: contain;
+      display: block;
+      margin-bottom: 10px;
+    }
+    
+    .icon-description {
+      text-align: left; /* Left justified text */
+      font-size: 12px;
+      margin-top: 5px;
+      width: 100%;
+      color: #ffffff;
+      line-height: 1.4;
+      padding-bottom: 20px; /* Add padding at bottom */
+    }
+    
+    .icon-title {
+      font-weight: bold;
+      margin-bottom: 2px;
+      font-size: 14px;
+      color: #ffffff;
+      align-self: flex-start; /* Align title to the left */
+      width: 100%;
+    }
+    
+    /* Style for the toolbar iframe */
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100px; /* Initial height to accommodate the menu */
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      z-index: 10000; /* Ensure iframe is on top */
+      pointer-events: none; /* Disable pointer events by default */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 2x1 Image Grid -->
+  <div class="grid-container">
+    <a href="emg/index.html" class="grid-item">
+      <img src="emg/everythingmustgo.png" alt="Everything Must Go" loading="lazy" decoding="async">
+      <div class="icon-title">Everything Must Go! ★ 2023</div>
+      <div class="icon-description">
+        Exploring the internet webpage as a landscape. Humanity's relationship with nature. How the increasing commercialization of the Internet can be mapped onto this relationship, perhaps as real estate that is for sale.
+        <br><br>
+        The Internet as an amalgamation of information from various eras, all compressed within the interface of the computer screen. Everything from every time period, of every medium ends up on the Internet. To this end, everything is available for commerce, including the Internet itself.
+      </div>
+    </a>
+    <a href="trash/trash.html" class="grid-item">
+      <img src="trash/trash.png" alt="Trash" loading="lazy" decoding="async">
+      <div class="icon-title">trash ★ 2023</div>
+      <div class="icon-description">
+        Using skeuomorphism to envision trash around my neighborhood as digital icons.
+      </div>
+    </a>
+  </div>
+  
+  <!-- Toolbar iframe -->
+  <iframe src="toolbar.html" frameborder="0"></iframe>
+  
+  <script>
+    // Function to adjust the iframe height based on the menu height
+    function adjustIframeHeight(height) {
+      const iframe = document.querySelector('iframe');
+      iframe.style.height = height + 'px';
+    }
+
+    // Listen for messages from the iframe
+    window.addEventListener('message', (event) => {
+      if (event.data.type === 'menu') {
+        const iframe = document.querySelector('iframe');
+        iframe.style.height = event.data.height + 'px'; // Adjust height to include menu
+        iframe.style.pointerEvents = 'none'; // Disable pointer events for iframe
+      }
+    });
+
+    // Function to enable iframe pointer events
+    function enableIframePointerEvents() {
+      const iframe = document.querySelector('iframe');
+      iframe.style.pointerEvents = 'auto'; // Enable pointer events
+    }
+
+    // Function to disable iframe pointer events
+    function disableIframePointerEvents() {
+      const iframe = document.querySelector('iframe');
+      iframe.style.pointerEvents = 'none'; // Disable pointer events
+    }
+
+    // Initial iframe height adjustment
+    window.addEventListener('load', () => {
+      const iframe = document.querySelector('iframe');
+      iframe.style.height = '100px'; // Default height for the toolbar
+    });
+
+    // Listen for clicks to enable draggable objects interaction
+    document.addEventListener('click', () => {
+      enableIframePointerEvents();
+    });
+  </script>
+</body>
+</html>

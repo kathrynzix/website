@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>about — kathryn's computer</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="msagent-3.png">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0 0 100px 0;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 13px;
+      background-color: #edeff2;
+      color: #111;
+    }
+
+    .about-container {
+      max-width: 1000px;
+      margin: 70px auto;
+      padding: 0 40px;
+    }
+
+    .page-title {
+      font-size: 25px;
+      font-weight: normal;
+      margin: 0 0 35px 0;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* Portrait */
+
+    .portrait {
+      width: 260px;
+      height: 310px;
+      background-color: #c0c0c0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+    }
+
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* About text */
+
+    .about-text {
+      max-width: 680px;
+      line-height: 1.8;
+    }
+
+    .about-text p {
+      margin: 0 0 20px 0;
+    }
+
+    /* Toolbar */
+
+    iframe.toolbar {
+      border: none;
+      width: 100%;
+      height: 100px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      z-index: 10000;
+      pointer-events: auto;
+    }
+
+    /* Mobile */
+
+    @media screen and (max-width: 600px) {
+
+      .about-container {
+        margin: 35px auto;
+        padding: 0 22px;
+      }
+
+      .page-title {
+        font-size: 22px;
+        margin-bottom: 25px;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .portrait {
+        width: 200px;
+        height: 240px;
+      }
+
+      .about-text {
+        font-size: 12px;
+        line-height: 1.8;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <main class="about-container">
+
+    <h1 class="page-title">About</h1>
+
+    <div class="about-content">
+
+      <!-- Portrait -->
+      <div class="portrait">
+        <img src="zix_21_1085.jpg">
+      </div>
+
+      <div class="about-text">
+
+        <p>
+          Kathryn Zix is an artist and arts programmer based in Portland, Oregon.
+          She studied Art and English at Reed College, where her work
+          brought together studio art, creative writing, and research.
+        </p>
+
+        <p>
+          Her artistic practice explores the relationships between
+          technology, time, memory, and the construction of personal
+          and collective histories. She is interested in how
+          technological systems shape the ways people experience,
+          document, and interpret the world, as well as the cultural
+          narratives and imagined futures that emerge from them.
+          Her work moves between documentary and speculative
+          approaches, examining subjects ranging from technological
+          obsolescence and personal archives to suburban landscapes,
+          consumer culture, and the visual language of technological
+          progress.
+        </p>
+
+        <p>
+          Working across digital and analog media, she creates
+          artists' books, zines, video, digital collage, and
+          installations. Her projects often draw on existing images,
+          interfaces, archival material, and everyday technologies,
+          using them as both subjects and tools for constructing
+          new visual and narrative environments.
+        </p>
+
+        <p>
+          Alongside her artistic practice, Kathryn works in arts
+          programming and public art, developing and
+          coordinating projects that connect artists and the public.
+        </p>
+
+        <p>
+          This website presents a selection of her creative work
+          and projects.
+        </p>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Shared Toolbar -->
+
+  <iframe class="toolbar" src="toolbar.html"></iframe>
+
+  <script>
+    window.addEventListener('message', (event) => {
+      if (event.data.type === 'menu') {
+        const iframe = document.querySelector('.toolbar');
+        iframe.style.height = event.data.height + 'px';
+        iframe.style.pointerEvents = 'none';
+      }
+    });
+
+    document.addEventListener('click', () => {
+      document.querySelector('.toolbar').style.pointerEvents = 'auto';
+    });
+  </script>
+
+</body>
+</html>

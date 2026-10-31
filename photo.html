@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>photography</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="computer_search.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Roboto Mono', monospace;
+  background-color: #77718F;
+}
+
+.page-title {
+  position: absolute;
+  left: 70px;
+  top: 70px;
+  color: white;
+}
+
+.page-title h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: normal;
+}
+
+.page-title p {
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+/* Folder icons */
+
+.photo-icon {
+  position: absolute;
+  width: 130px;
+  text-align: center;
+  cursor: pointer;
+  color: white;
+  font-size: 11px;
+  user-select: none;
+}
+
+.photo-icon img {
+  width: 95px;
+  height: 95px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 5px auto;
+}
+
+.photo-icon:hover {
+  opacity: 0.8;
+}
+
+#photoIcon1 {
+  left: 70px;
+  top: 180px;
+}
+
+#photoIcon2 {
+  left: 230px;
+  top: 180px;
+}
+
+#photoIcon3 {
+  left: 390px;
+  top: 180px;
+}
+
+/* Collection windows */
+
+.photo-window {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 570px;
+  max-width: calc(100vw - 30px);
+  max-height: calc(100vh - 130px);
+  background: #c0c0c0;
+  border: 2px solid black;
+  box-shadow: 5px 5px 0 rgba(0,0,0,.35);
+  z-index: 5000;
+}
+
+.photo-window.maximized {
+  left: 0 !important;
+  top: 0 !important;
+  transform: none !important;
+  width: 100vw;
+  height: calc(100vh - 45px);
+  max-width: none;
+  max-height: none;
+}
+
+/* Window title bar */
+
+.title-bar {
+  height: 30px;
+  background: #065F73;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+  cursor: grab;
+  user-select: none;
+}
+
+.title-bar:active {
+  cursor: grabbing;
+}
+
+.window-buttons {
+  display: flex;
+  gap: 4px;
+}
+
+.window-buttons button {
+  width: 24px;
+  height: 22px;
+  border: 1px solid black;
+  background: #e6e6e6;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 18px;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Photo collection grid */
+
+.photo-grid {
+  height: calc(100% - 30px);
+  overflow-y: auto;
+  padding: 15px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  align-content: start;
+  background: #fff;
+}
+
+.photo-grid img {
+  width: 100%;
+  height: 170px;
+  object-fit: contain;
+  cursor: pointer;
+  background: #eee;
+}
+
+.photo-grid img:hover {
+  outline: 2px solid #065F73;
+}
+
+/* Large photo viewer */
+
+.image-viewer {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  width: 850px;
+  height: 600px;
+  max-width: calc(100vw - 30px);
+  max-height: calc(100vh - 130px);
+  background: #c0c0c0;
+  border: 2px solid black;
+  box-shadow: 5px 5px 0 rgba(0,0,0,.35);
+  z-index: 6000;
+}
+
+.image-viewer.maximized {
+  left: 0 !important;
+  top: 0 !important;
+  transform: none !important;
+  width: 100vw;
+  height: calc(100vh - 45px);
+  max-width: none;
+  max-height: none;
+}
+
+.large-image {
+  width: 100%;
+  height: calc(100% - 30px);
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.large-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Minimized windows */
+
+.minimized-photo {
+  display: none;
+  position: fixed;
+  bottom: 45px;
+  left: 10px;
+  background: #c0c0c0;
+  border: 2px solid black;
+  padding: 5px 12px;
+  cursor: pointer;
+  z-index: 10001;
+  font-size: 12px;
+}
+
+/* Toolbar */
+
+iframe.toolbar {
+  border: none;
+  width: 100%;
+  height: 100px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .page-title {
+    left: 25px;
+    top: 35px;
+  }
+
+  .photo-icon {
+    width: 100px;
+  }
+
+  .photo-icon img {
+    width: 75px;
+    height: 75px;
+  }
+
+  #photoIcon1 {
+    left: 25px;
+    top: 140px;
+  }
+
+  #photoIcon2 {
+    left: 145px;
+    top: 140px;
+  }
+
+  #photoIcon3 {
+    left: 25px;
+    top: 290px;
+  }
+
+  .photo-window,
+  .image-viewer {
+    width: calc(100vw - 24px);
+    height: calc(100vh - 150px);
+  }
+
+  .photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .photo-grid img {
+    height: 140px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page-title">
+  <h1>photography</h1>
+  <p>selected works</p>
+</div>
+
+<!-- Folder icons -->
+
+<div class="photo-icon" id="photoIcon1"
+     onclick="openPhotoWindow('photoWindow1')">
+  <img src="photos/hiding places/01.jpg">
+  <div>Hiding Places</div>
+</div>
+
+<div class="photo-icon" id="photoIcon2"
+     onclick="openPhotoWindow('photoWindow2')">
+  <img src="photos/anamnesis/IMG-6355.jpg">
+  <div>Anamnesis</div>
+</div>
+
+<div class="photo-icon" id="photoIcon3"
+     onclick="openPhotoWindow('photoWindow3')">
+  <img src="photos/portraits/ghost-6714.jpg">
+  <div>Portraits</div>
+</div>
+
+<!-- Collection windows -->
+
+<div class="photo-window" id="photoWindow1">
+  <div class="title-bar">
+    <span>Hiding Places</span>
+    <div class="window-buttons">
+      <button onclick="minimizePhotoWindow('photoWindow1','minimizedPhoto1')">−</button>
+      <button onclick="maximizePhotoWindow('photoWindow1')">□</button>
+      <button onclick="closePhotoWindow('photoWindow1')">×</button>
+    </div>
+  </div>
+  <div class="photo-grid" id="gallery1"></div>
+</div>
+
+<div class="photo-window" id="photoWindow2">
+  <div class="title-bar">
+    <span>Anamnesis</span>
+    <div class="window-buttons">
+      <button onclick="minimizePhotoWindow('photoWindow2','minimizedPhoto2')">−</button>
+      <button onclick="maximizePhotoWindow('photoWindow2')">□</button>
+      <button onclick="closePhotoWindow('photoWindow2')">×</button>
+    </div>
+  </div>
+  <div class="photo-grid" id="gallery2"></div>
+</div>
+
+<div class="photo-window" id="photoWindow3">
+  <div class="title-bar">
+    <span>Portraits</span>
+    <div class="window-buttons">
+      <button onclick="minimizePhotoWindow('photoWindow3','minimizedPhoto3')">−</button>
+      <button onclick="maximizePhotoWindow('photoWindow3')">□</button>
+      <button onclick="closePhotoWindow('photoWindow3')">×</button>
+    </div>
+  </div>
+  <div class="photo-grid" id="gallery3"></div>
+</div>
+
+<!-- Large image viewer -->
+
+<div class="image-viewer" id="imageViewer">
+  <div class="title-bar">
+    <span id="imageTitle"></span>
+    <div class="window-buttons">
+      <button onclick="showPreviousImage()" aria-label="Previous photo">‹</button>
+      <button onclick="showNextImage()" aria-label="Next photo">›</button>
+      <button onclick="maximizePhotoWindow('imageViewer')">□</button>
+      <button onclick="closeImageViewer()">×</button>
+    </div>
+  </div>
+  <div class="large-image">
+    <img id="largeImage" src="" alt="">
+  </div>
+</div>
+
+<!-- Minimized windows -->
+
+<div class="minimized-photo" id="minimizedPhoto1"
+     onclick="restorePhotoWindow('photoWindow1','minimizedPhoto1')">
+  collage 01
+</div>
+
+<div class="minimized-photo" id="minimizedPhoto2"
+     onclick="restorePhotoWindow('photoWindow2','minimizedPhoto2')">
+  collage 02
+</div>
+
+<div class="minimized-photo" id="minimizedPhoto3"
+     onclick="restorePhotoWindow('photoWindow3','minimizedPhoto3')">
+  portraits
+</div>
+
+<!-- Toolbar -->
+
+<iframe class="toolbar" src="toolbar.html"></iframe>
+
+<script>
+
+const photoCollections = {
+  gallery1: [
+    "photos/hiding places/01.jpg",
+    "photos/hiding places/02.jpg",
+    "photos/hiding places/03.jpg",
+    "photos/hiding places/04.jpg",
+    "photos/hiding places/05.jpg",
+    "photos/hiding places/06.jpg",
+    "photos/hiding places/07.jpg"
+  ],
+
+  gallery2: [
+    "photos/anamnesis/IMG-6355.jpg"
+  ],
+
+  gallery3: [
+    "photos/portraits/ghost-6714.jpg",
+    "photos/portraits/bella--9.jpg",
+    "photos/portraits/esme-37.jpg",
+    "photos/portraits/esme-33 (2).jpg"
+  ]
+};
+
+// Build the photo grids
+
+Object.entries(photoCollections).forEach(([galleryId, images]) => {
+  const gallery = document.getElementById(galleryId);
+
+  images.forEach((src, index) => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = src.split('/').pop();
+    img.loading = 'lazy';
+    img.onclick = () => openImageViewer(galleryId, index);
+    gallery.appendChild(img);
+  });
+});
+
+// Window functions
+
+function openPhotoWindow(id) {
+  const windowEl = document.getElementById(id);
+  windowEl.style.display = 'block';
+  windowEl.style.zIndex = getHighestZIndex() + 1;
+}
+
+function closePhotoWindow(id) {
+  document.getElementById(id).style.display = 'none';
+}
+
+function maximizePhotoWindow(id) {
+  document.getElementById(id).classList.toggle('maximized');
+}
+
+function minimizePhotoWindow(id, minimized) {
+  document.getElementById(id).style.display = 'none';
+  document.getElementById(minimized).style.display = 'block';
+}
+
+function restorePhotoWindow(id, minimized) {
+  const windowEl = document.getElementById(id);
+  windowEl.style.display = 'block';
+  windowEl.style.zIndex = getHighestZIndex() + 1;
+  document.getElementById(minimized).style.display = 'none';
+}
+
+// Large image viewer
+
+let currentImageList = [];
+let currentImageIndex = 0;
+
+function openImageViewer(galleryId, index) {
+  currentImageList = photoCollections[galleryId];
+  currentImageIndex = index;
+
+  updateImageViewer();
+
+  const viewer = document.getElementById('imageViewer');
+  viewer.style.display = 'block';
+  viewer.style.zIndex = getHighestZIndex() + 1;
+}
+
+function updateImageViewer() {
+  const src = currentImageList[currentImageIndex];
+
+  document.getElementById('largeImage').src = src;
+  document.getElementById('largeImage').alt = src.split('/').pop();
+}
+
+function showPreviousImage() {
+  if (!currentImageList.length) return;
+
+  currentImageIndex =
+    (currentImageIndex - 1 + currentImageList.length) % currentImageList.length;
+
+  updateImageViewer();
+}
+
+function showNextImage() {
+  if (!currentImageList.length) return;
+
+  currentImageIndex =
+    (currentImageIndex + 1) % currentImageList.length;
+
+  updateImageViewer();
+}
+
+function closeImageViewer() {
+  document.getElementById('imageViewer').style.display = 'none';
+}
+
+// Use the left and right arrow keys to move through the current collection.
+document.addEventListener('keydown', (event) => {
+  const viewer = document.getElementById('imageViewer');
+
+  if (viewer.style.display !== 'block') return;
+
+  if (event.key === 'ArrowLeft') {
+    showPreviousImage();
+  } else if (event.key === 'ArrowRight') {
+    showNextImage();
+  }
+});
+
+function getHighestZIndex() {
+  let highest = 0;
+
+  document.querySelectorAll('*').forEach(el => {
+    const z = parseInt(window.getComputedStyle(el).zIndex);
+
+    if (!isNaN(z) && z > highest) {
+      highest = z;
+    }
+  });
+
+  return highest;
+}
+
+// Drag windows
+
+document.querySelectorAll('.photo-window, .image-viewer')
+  .forEach(windowEl => {
+
+    const titleBar = windowEl.querySelector('.title-bar');
+
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    titleBar.addEventListener('pointerdown', (e) => {
+      if (e.target.tagName === 'BUTTON') return;
+      if (windowEl.classList.contains('maximized')) return;
+
+      isDragging = true;
+      windowEl.style.zIndex = getHighestZIndex() + 1;
+
+      const rect = windowEl.getBoundingClientRect();
+
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
+
+      windowEl.style.left = rect.left + 'px';
+      windowEl.style.top = rect.top + 'px';
+      windowEl.style.transform = 'none';
+
+      titleBar.setPointerCapture(e.pointerId);
+    });
+
+    titleBar.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+
+      windowEl.style.left = (e.clientX - offsetX) + 'px';
+      windowEl.style.top = (e.clientY - offsetY) + 'px';
+    });
+
+    titleBar.addEventListener('pointerup', (e) => {
+      isDragging = false;
+
+      if (titleBar.hasPointerCapture(e.pointerId)) {
+        titleBar.releasePointerCapture(e.pointerId);
+      }
+    });
+  });
+
+// Toolbar behavior
+
+window.addEventListener('message', (event) => {
+  if (event.data.type === 'menu') {
+    const iframe = document.querySelector('.toolbar');
+    iframe.style.height = event.data.height + 'px';
+    iframe.style.pointerEvents = 'none';
+  }
+});
+
+document.addEventListener('click', () => {
+  document.querySelector('.toolbar').style.pointerEvents = 'auto';
+});
+
+</script>
+
+</body>
+</html>
